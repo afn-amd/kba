@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { siteContent } from "../data/content";
 
 function NotFoundComponent() {
   return (
@@ -76,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "Dr. Khalid Bin Amir" },
       { name: "description", content: "Medical portfolio of Dr. Khalid Bin Amir." },
       { name: "author", content: "Dr. Khalid Bin Amir" },
@@ -103,7 +104,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: siteContent.doctor.favicon, type: "image/png" },
+      { rel: "apple-touch-icon", href: siteContent.doctor.favicon },
     ],
   }),
   shellComponent: RootShell,

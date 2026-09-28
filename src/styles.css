@@ -44,7 +44,7 @@
   --card-foreground: oklch(0.2 0.015 75);
   --popover: oklch(0.992 0.004 85);
   --popover-foreground: oklch(0.2 0.015 75);
-  --primary: oklch(0.57 0.24 258);
+  --primary: #0057ff;
   --primary-strong: oklch(0.48 0.225 258);
   --primary-soft: oklch(0.92 0.04 255);
   --primary-foreground: oklch(0.99 0.003 85);
@@ -59,13 +59,21 @@
   --border: oklch(0.88 0.012 80);
   --border-strong: oklch(0.79 0.018 78);
   --input: oklch(0.84 0.014 80);
-  --ring: oklch(0.57 0.24 258);
+  --ring: #0057ff;
   --surface: oklch(0.955 0.012 82);
   --shadow-color: oklch(0.31 0.03 250);
   --light-source: oklch(1 0 0);
+  --header-h: 4.5rem;
+  --action-bar-h: 4.75rem;
 }
 
-* { border-color: var(--border); }
+@media (min-width: 640px) {
+  :root { --header-h: 5rem; }
+}
+
+@layer base {
+  * { border-color: var(--border); }
+}
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
 ::selection { background: var(--primary); color: var(--primary-foreground); }
@@ -73,7 +81,9 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 @utility nav-link {
   display: inline-flex;
   min-height: 2.75rem;
+  min-width: 2.75rem;
   align-items: center;
+  justify-content: center;
   border-bottom: 2px solid transparent;
   font-size: 0.8125rem;
   font-weight: 700;
@@ -93,7 +103,53 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   color: var(--primary);
 }
 
-@utility section-kicker-inverse { color: color-mix(in oklab, var(--primary-foreground) 75%, transparent); }
+@utility section-kicker-inverse { color: color-mix(in oklab, var(--primary-foreground) 90%, transparent); }
+
+/* Layout primitives: one gutter, one section rhythm, one type scale shared by every section. */
+@utility page-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 640px) { padding-inline: 2rem; }
+  @media (min-width: 1024px) { padding-inline: 3rem; }
+}
+
+@utility section-y {
+  padding-block: 3.5rem;
+  @media (min-width: 768px) { padding-block: 5rem; }
+  @media (min-width: 1024px) { padding-block: 7rem; }
+}
+
+@utility text-display {
+  font-size: clamp(2.25rem, 1.2rem + 5.2vw, 4.5rem);
+  line-height: 1.02;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  /* The hero splits into two columns at lg, so the headline scales with the narrower column. */
+  @media (min-width: 1024px) { font-size: clamp(3.5rem, 0.5rem + 4.6vw, 4.5rem); }
+}
+
+@utility text-title {
+  font-size: clamp(1.875rem, 1.35rem + 2.3vw, 3rem);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+/* Body copy stays at 16px until there is room for the compact desktop size. */
+@utility text-body {
+  font-size: 1rem;
+  line-height: 1.625;
+  @media (min-width: 1024px) { font-size: 0.875rem; }
+}
+
+@utility scroll-offset { scroll-margin-top: var(--header-h); }
+
+/* Leaves room for the fixed mobile action bar so it never covers the footer or form. */
+@utility action-bar-offset {
+  padding-bottom: calc(var(--action-bar-h) + env(safe-area-inset-bottom));
+  @media (min-width: 768px) { padding-bottom: 0; }
+}
 
 @utility form-field {
   display: block;
@@ -111,19 +167,36 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   &:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 20%, transparent); }
 }
 
-.tilt-card { transform: perspective(900px) rotateX(0) rotateY(0); transition: transform 220ms ease-out, box-shadow 220ms ease-out, border-color 220ms ease-out; }
-.tilt-card:nth-child(odd):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(-2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
-.tilt-card:nth-child(even):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
+.tilt-card { transition: transform 220ms ease-out, box-shadow 220ms ease-out, border-color 220ms ease-out; }
 
-.headshot-frame::before { content: ""; position: absolute; inset: 12% 10% 20%; border: 1px solid var(--border-strong); border-radius: 50% 50% 44% 44%; opacity: 0.4; }
-.medical-scene { position: relative; width: 16rem; height: 16rem; perspective: 900px; transform-style: preserve-3d; animation: scene-float 7s ease-in-out infinite; }
+.medical-scene { position: relative; width: 16rem; height: 16rem; perspective: 900px; transform-style: preserve-3d; }
 .medical-loop { position: absolute; inset: 2rem; border: 0.75rem solid var(--primary); border-radius: 50%; box-shadow: var(--shadow-raised); transform-style: preserve-3d; }
-.medical-loop-one { transform: rotateX(68deg) rotateZ(25deg); animation: loop-one 12s linear infinite; }
-.medical-loop-two { transform: rotateY(68deg) rotateZ(-25deg); border-color: var(--primary-strong); animation: loop-two 15s linear infinite reverse; }
+.medical-loop-one { transform: rotateX(68deg) rotateZ(25deg); }
+.medical-loop-two { transform: rotateY(68deg) rotateZ(-25deg); border-color: var(--primary-strong); }
 .medical-orbit-dot { position: absolute; left: 50%; top: 0.8rem; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--primary); box-shadow: var(--shadow-soft); }
-.medical-core { position: absolute; left: 50%; top: 50%; display: grid; width: 4rem; height: 4rem; translate: -50% -50%; place-items: center; border-radius: 50%; background: var(--background); border: 1px solid var(--border); box-shadow: var(--shadow-deep); color: var(--primary); font-weight: 800; }
+/* Header-sized loop: lit top edge / shaded bottom edge on the rings and glossy spheres give it depth. */
+.medical-scene.medical-mark { display: block; width: 3rem; height: 3rem; perspective: 160px; }
+.medical-mark .medical-loop {
+  inset: 0.35rem; border-width: 0.25rem;
+  border-top-color: color-mix(in oklab, var(--primary) 60%, white);
+  border-bottom-color: var(--primary-strong);
+  box-shadow: 0 3px 6px color-mix(in oklab, var(--shadow-color) 30%, transparent);
+}
+.medical-mark .medical-loop-two { border-color: var(--primary-strong); border-top-color: var(--primary); border-bottom-color: color-mix(in oklab, var(--primary-strong) 70%, black); }
+.medical-mark .medical-orbit-dot,
+.medical-mark .medical-sphere { border-radius: 50%; background: radial-gradient(circle at 35% 30%, color-mix(in oklab, var(--primary) 35%, white), var(--primary) 55%, var(--primary-strong)); box-shadow: 0 2px 3px color-mix(in oklab, var(--shadow-color) 35%, transparent); }
+.medical-mark .medical-orbit-dot { top: 0; width: 0.5rem; height: 0.5rem; translate: -50% 0; }
+.medical-mark .medical-sphere { position: absolute; left: 50%; top: 50%; width: 0.65rem; height: 0.65rem; translate: -50% -50%; }
 
-@keyframes scene-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+/* Tilt and rotation only for pointer devices that allow motion; touch screens get the static pose. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tilt-card { transform: perspective(900px) rotateX(0) rotateY(0); }
+  .tilt-card:nth-child(odd):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(-2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
+  .tilt-card:nth-child(even):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
+  .medical-loop-one { animation: loop-one 12s linear infinite; }
+  .medical-loop-two { animation: loop-two 15s linear infinite reverse; }
+}
+
 @keyframes loop-one { to { transform: rotateX(68deg) rotateZ(385deg); } }
 @keyframes loop-two { to { transform: rotateY(68deg) rotateZ(335deg); } }
 

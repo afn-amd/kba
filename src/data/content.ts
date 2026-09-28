@@ -1,12 +1,17 @@
 export const siteContent = {
   doctor: {
     name: "Dr. Khalid Bin Amir",
-    initials: "KA",
-    credentials: "MBBS (2025)",
+    initials: "KBA",
+    headshot: "/doctor-headshot.png",
+    favicon: "/doctor-cutout-transparent.png",
+    ctaLabel: "Contact Dr. Khalid",
+    currentlyLabel: "Currently",
+    currentlyValue: "Medical Intern · Kolkata",
+    credentials: "MBBS (2026)",
     role: "Medical Intern",
-    hospital: "[Hospital Name]",
+    hospital: "Chittaranjan Hospital",
     city: "Kolkata, India",
-    overline: "MBBS · Medical Intern, [Hospital Name], Kolkata",
+    overline: "MBBS · Medical Intern, Chittaranjan Hospital, Kolkata",
     headline: "Compassionate care, grounded in evidence.",
     support:
       "A newly qualified doctor committed to attentive consultations, clear communication, and responsible clinical care.",
@@ -29,9 +34,9 @@ export const siteContent = {
     registration: "West Bengal Medical Council Reg. No. [XXXXX]",
   },
   education: [
-    { year: "2020–2025", title: "MBBS", place: "[Medical College Name], Kolkata" },
-    { year: "2025–2026", title: "Medical Internship", place: "[Hospital Name], Kolkata" },
-    { year: "2019", title: "NEET-UG Qualified", place: "National Eligibility cum Entrance Test" },
+    { year: "2026–Present", title: "Medical Internship", place: "Chittaranjan Hospital, Kolkata" },
+    { year: "2021–2026", title: "MBBS", place: "Calcutta National Medical College & Hospital, Kolkata" },
+    { year: "2021", title: "NEET-UG Qualified", place: "National Eligibility cum Entrance Test" },
   ],
   rotations: [
     { title: "General Medicine", description: "Patient assessment, case presentation, ward rounds, and supervised care planning." },
@@ -59,7 +64,11 @@ export const siteContent = {
     email: "doctor.khalid@example.com",
     timings: "[OPD days and timings]",
     whatsappHref: "https://wa.me/91XXXXXXXXXX",
+    callLabel: "Call",
+    whatsappLabel: "WhatsApp",
     formAction: "https://example.com/contact",
+    // Paste a Google Maps "Embed a map" src URL here; the placeholder shows until it is set.
+    mapEmbedUrl: "",
   },
   social: {
     linkedin: "https://www.linkedin.com/in/[your-handle]",

@@ -4,7 +4,6 @@ import {
   ArrowRight,
   CalendarDays,
   Clock3,
-  ExternalLink,
   Facebook,
   GraduationCap,
   Instagram,

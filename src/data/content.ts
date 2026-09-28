@@ -1,0 +1,67 @@
+export const siteContent = {
+  doctor: {
+    name: "Dr. Khalid Bin Amir",
+    initials: "KA",
+    credentials: "MBBS (2025)",
+    role: "Medical Intern",
+    hospital: "[Hospital Name]",
+    city: "Kolkata, India",
+    overline: "MBBS · Medical Intern, [Hospital Name], Kolkata",
+    headline: "Compassionate care, grounded in evidence.",
+    support:
+      "A newly qualified doctor committed to attentive consultations, clear communication, and responsible clinical care.",
+  },
+  navigation: [
+    { label: "About", href: "#about" },
+    { label: "Education", href: "#education" },
+    { label: "Experience", href: "#experience" },
+    { label: "Services", href: "#services" },
+    { label: "Contact", href: "#contact" },
+  ],
+  about: {
+    bio: [
+      "Dr. Khalid Bin Amir is a newly qualified MBBS doctor, currently completing his medical internship at a hospital in Kolkata.",
+      "His approach combines evidence-based decision-making with careful listening and clear, respectful communication.",
+      "Through broad clinical rotations, he is building practical experience across acute, preventive, and community care.",
+      "He is committed to continuous learning and to treating every patient with dignity and empathy.",
+    ],
+    languages: ["Bengali", "Hindi", "English"],
+    registration: "West Bengal Medical Council Reg. No. [XXXXX]",
+  },
+  education: [
+    { year: "2020–2025", title: "MBBS", place: "[Medical College Name], Kolkata" },
+    { year: "2025–2026", title: "Medical Internship", place: "[Hospital Name], Kolkata" },
+    { year: "2019", title: "NEET-UG Qualified", place: "National Eligibility cum Entrance Test" },
+  ],
+  rotations: [
+    { title: "General Medicine", description: "Patient assessment, case presentation, ward rounds, and supervised care planning." },
+    { title: "Surgery", description: "Pre-operative evaluation, post-operative monitoring, and supervised procedural assistance." },
+    { title: "Paediatrics", description: "Clinical assessment of children, growth monitoring, and family-centred health guidance." },
+    { title: "Obstetrics & Gynaecology", description: "Antenatal evaluation, labour-room observation, and supervised women’s health care." },
+    { title: "Community Medicine", description: "Primary care outreach, screening programmes, and preventive health education." },
+    { title: "Emergency", description: "Initial triage, acute assessment, basic stabilisation, and coordinated escalation of care." },
+  ],
+  services: [
+    { number: "01", title: "General consultation", description: "Thoughtful first assessment, clear guidance, and appropriate referral when required." },
+    { number: "02", title: "Preventive health check-ups", description: "Risk review, routine screening guidance, and practical prevention planning." },
+    { number: "03", title: "Health education & awareness camps", description: "Accessible, evidence-led health information for schools and communities." },
+    { number: "04", title: "Telemedicine follow-ups", description: "Convenient review of progress, reports, and ongoing care instructions." },
+  ],
+  certifications: [
+    { title: "Basic Life Support (BLS)", status: "Certification details to be added" },
+    { title: "Advanced Cardiovascular Life Support (ACLS)", status: "Certification details to be added" },
+    { title: "Clinical workshops & CME", status: "Workshop details to be added" },
+  ],
+  contact: {
+    address: "[Clinic / Hospital Address], Kolkata, West Bengal",
+    phoneDisplay: "+91 XXXXX XXXXX",
+    phoneHref: "tel:+91XXXXXXXXXX",
+    email: "doctor.khalid@example.com",
+    timings: "[OPD days and timings]",
+    whatsappHref: "https://wa.me/91XXXXXXXXXX",
+    formAction: "https://example.com/contact",
+  },
+  social: { linkedin: "https://www.linkedin.com/" },
+  copyright: "© 2026 Dr. Khalid Bin Amir. All rights reserved.",
+  disclaimer: "This website is for information only and does not replace an in-person consultation.",
+} as const;

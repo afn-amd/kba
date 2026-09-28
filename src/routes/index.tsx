@@ -5,7 +5,9 @@ import {
   CalendarDays,
   Clock3,
   ExternalLink,
+  Facebook,
   GraduationCap,
+  Instagram,
   Languages,
   Linkedin,
   Mail,
@@ -13,7 +15,7 @@ import {
   MessageCircle,
   Phone,
   ShieldCheck,
-  UserRound,
+  Twitter,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteContent } from "@/data/content";
@@ -105,13 +107,7 @@ function PortfolioPage() {
             <div className="relative mx-auto w-full max-w-lg lg:mx-0">
               <div className="absolute -right-14 -top-20 hidden sm:block"><MedicalLoop /></div>
               <div className="headshot-frame relative z-10 ml-auto aspect-[4/5] w-[78%] overflow-hidden rounded-lg border border-border-strong bg-secondary shadow-deep sm:w-[72%]">
-                <div className="absolute inset-0 grid place-items-center">
-                  <UserRound className="h-28 w-28 text-muted-foreground/35" strokeWidth={1} />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/95 p-5">
-                  <p className="text-sm font-bold text-foreground">Professional headshot</p>
-                  <p className="mt-1 text-xs text-muted-foreground">Photo placeholder · Replace in content</p>
-                </div>
+                <div className="sr-only">Professional photo placeholder</div>
               </div>
               <div className="absolute -bottom-7 left-0 z-20 rounded-lg border border-border bg-card p-4 shadow-raised">
                 <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">Currently</p>
@@ -252,7 +248,18 @@ function PortfolioPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="grid gap-8 border-b border-background/20 pb-9 sm:grid-cols-[1fr_auto] sm:items-end">
             <div><p className="text-xl font-extrabold">{doctor.name}</p><p className="mt-2 text-sm text-background/65">{doctor.credentials}</p></div>
-            <a href={siteContent.social.linkedin} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background"><Linkedin className="h-4 w-4" />LinkedIn<ExternalLink className="h-3 w-3" /></a>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              {[
+                { label: "LinkedIn", href: siteContent.social.linkedin, Icon: Linkedin },
+                { label: "Instagram", href: siteContent.social.instagram, Icon: Instagram },
+                { label: "Facebook", href: siteContent.social.facebook, Icon: Facebook },
+                { label: "Twitter / X", href: siteContent.social.twitter, Icon: Twitter },
+              ].map(({ label, href, Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">
+                  <Icon className="h-4 w-4" />{label}
+                </a>
+              ))}
+            </div>
           </div>
           <div className="grid gap-4 pt-7 text-xs leading-relaxed text-background/65 sm:grid-cols-2">
             <p>{siteContent.copyright}</p><p className="sm:text-right">{siteContent.disclaimer}</p>

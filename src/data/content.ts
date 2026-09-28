@@ -61,7 +61,12 @@ export const siteContent = {
     whatsappHref: "https://wa.me/91XXXXXXXXXX",
     formAction: "https://example.com/contact",
   },
-  social: { linkedin: "https://www.linkedin.com/" },
+  social: {
+    linkedin: "https://www.linkedin.com/in/[your-handle]",
+    instagram: "https://www.instagram.com/[your-handle]",
+    facebook: "https://www.facebook.com/[your-handle]",
+    twitter: "https://x.com/[your-handle]",
+  },
   copyright: "© 2026 Dr. Khalid Bin Amir. All rights reserved.",
   disclaimer: "This website is for information only and does not replace an in-person consultation.",
 } as const;

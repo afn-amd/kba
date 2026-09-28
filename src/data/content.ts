@@ -2,8 +2,8 @@ export const siteContent = {
   doctor: {
     name: "Dr. Khalid Bin Amir",
     initials: "KBA",
-    headshot: "/doctor-headshot.png",
-    favicon: "/doctor-cutout-transparent.png",
+    headshot: `${import.meta.env.BASE_URL}doctor-headshot.png`,
+    favicon: `${import.meta.env.BASE_URL}doctor-cutout-transparent.png`,
     ctaLabel: "Contact Dr. Khalid",
     currentlyLabel: "Currently",
     currentlyValue: "Medical Intern · Kolkata",

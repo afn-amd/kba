@@ -9,9 +9,9 @@ export const siteContent = {
     currentlyValue: "Medical Intern · Kolkata",
     credentials: "MBBS (2026)",
     role: "Medical Intern",
-    hospital: "Chittaranjan Hospital",
+    hospital: "Calcutta National Medical College & Hospital",
     city: "Kolkata, India",
-    overline: "MBBS · Medical Intern, Chittaranjan Hospital, Kolkata",
+    overline: "MBBS · Medical Intern, CNMC, Kolkata",
     headline: "Compassionate care, grounded in evidence.",
     support:
       "A newly qualified doctor committed to attentive consultations, clear communication, and responsible clinical care.",
@@ -34,7 +34,7 @@ export const siteContent = {
     registration: "West Bengal Medical Council Reg. No. [XXXXX]",
   },
   education: [
-    { year: "2026–Present", title: "Medical Internship", place: "Chittaranjan Hospital, Kolkata" },
+    { year: "2026–Present", title: "Medical Internship", place: "Calcutta National Medical College & Hospital, Kolkata" },
     { year: "2021–2026", title: "MBBS", place: "Calcutta National Medical College & Hospital, Kolkata" },
     { year: "2021", title: "NEET-UG Qualified", place: "National Eligibility cum Entrance Test" },
   ],
@@ -71,9 +71,9 @@ export const siteContent = {
     mapEmbedUrl: "",
   },
   social: {
-    linkedin: "https://www.linkedin.com/in/[your-handle]",
-    instagram: "https://www.instagram.com/[your-handle]",
-    facebook: "https://www.facebook.com/[your-handle]",
+    linkedin: "https://www.linkedin.com/in/khalid-bin-amir/",
+    instagram: "https://www.instagram.com/dr_khalidbinamir/",
+    facebook: "https://www.facebook.com/khalidbin.amir.16",
     twitter: "https://x.com/[your-handle]",
   },
   copyright: "© 2026 Dr. Khalid Bin Amir. All rights reserved.",

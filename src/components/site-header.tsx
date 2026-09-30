@@ -10,6 +10,32 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const [activeHref, setActiveHref] = useState<string | null>(null);
+
+  // Highlight the nav item for whichever section crosses the middle of the viewport.
+  useEffect(() => {
+    const sections = navigation
+      .map((item) => document.querySelector<HTMLElement>(item.href))
+      .filter((section): section is HTMLElement => section !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const href = `#${entry.target.id}`;
+          if (entry.isIntersecting) {
+            setActiveHref(href);
+          } else if (entry.boundingClientRect.top > 0) {
+            // Scrolled back up above this section (e.g. into the hero): clear it.
+            setActiveHref((current) => (current === href ? null : current));
+          }
+        }
+      },
+      { rootMargin: "-45% 0px -54% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [navigation]);
 
   useEffect(() => {
     if (!open) return;
@@ -70,17 +96,17 @@ export function SiteHeader() {
           onClick={close}
           className="flex min-h-11 min-w-0 items-center gap-3 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <span className="medical-scene medical-mark shrink-0" aria-hidden="true">
-            <span className="medical-loop medical-loop-one" />
-            <span className="medical-loop medical-loop-two" />
-            <span className="medical-orbit-dot" />
-            <span className="medical-sphere" />
-          </span>
+          <img src={doctor.logo} alt="" width={195} height={96} className="h-8 w-auto shrink-0" />
           <span className="truncate text-sm font-extrabold sm:text-base">{doctor.name}</span>
         </a>
         <nav aria-label="Main navigation" className="hidden items-center gap-6 lg:flex">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} className="nav-link">
+            <a
+              key={item.href}
+              href={item.href}
+              className="nav-link"
+              aria-current={item.href === activeHref ? "location" : undefined}
+            >
               {item.label}
             </a>
           ))}
@@ -116,7 +142,8 @@ export function SiteHeader() {
                 <a
                   href={item.href}
                   onClick={close}
-                  className="flex min-h-14 items-center justify-between gap-4 rounded-sm text-lg font-extrabold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-current={item.href === activeHref ? "location" : undefined}
+                  className="flex min-h-14 items-center justify-between gap-4 rounded-sm text-lg font-extrabold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-[current]:text-primary"
                 >
                   {item.label}
                   <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />

@@ -3,7 +3,6 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  Clock3,
   Facebook,
   GraduationCap,
   Instagram,
@@ -23,7 +22,7 @@ import { siteContent } from "@/data/content";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dr. Khalid Bin Amir | MBBS Doctor in Kolkata" },
+      { title: "Dr. Khalid Bin Amir" },
       {
         name: "description",
         content:
@@ -77,7 +76,7 @@ function PortfolioPage() {
 
             <div className="relative mx-auto w-full max-w-lg lg:mx-0">
               <div className="relative z-10 mx-auto aspect-[4/5] w-full max-w-[48svh] overflow-hidden rounded-lg border border-border-strong bg-secondary shadow-deep lg:mr-0 lg:w-[72%] lg:max-w-none">
-                <img src={doctor.headshot} alt={`Portrait of ${doctor.name}`} width={880} height={1168} fetchPriority="high" decoding="async" className="h-full w-full object-cover object-top" />
+                <img src={doctor.headshot} alt={`Portrait of ${doctor.name}`} width={1086} height={1448} fetchPriority="high" decoding="async" className="h-full w-full object-cover object-top" />
               </div>
               <div className="relative z-20 mx-auto mt-4 w-full max-w-[48svh] rounded-lg border border-border bg-card p-4 shadow-raised lg:absolute lg:-bottom-7 lg:left-0 lg:mt-0 lg:w-auto lg:max-w-none">
                 <p className="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">{doctor.currentlyLabel}</p>
@@ -152,7 +151,7 @@ function PortfolioPage() {
         <section id="services" className="scroll-offset section-y bg-primary text-primary-foreground" aria-labelledby="services-title">
           <div className="page-container grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
             <div>
-              <p className="section-kicker section-kicker-inverse">04 · Areas of interest</p>
+              <p className="section-kicker section-kicker-inverse">04 · Services</p>
               <h2 id="services-title" className="text-title font-extrabold">Everyday care, made clear.</h2>
             </div>
             <ol className="divide-y divide-primary-foreground/25 border-y border-primary-foreground/25">
@@ -167,7 +166,7 @@ function PortfolioPage() {
           </div>
         </section>
 
-        <section className="section-y" aria-labelledby="certifications-title">
+        <section id="certifications" className="scroll-offset section-y" aria-labelledby="certifications-title">
           <div className="page-container grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-12">
             <div><p className="section-kicker">05 · Certifications</p><h2 id="certifications-title" className={sectionTitle}>Continued learning.</h2></div>
             <div>
@@ -223,7 +222,6 @@ function PortfolioPage() {
                   <ContactRow icon={<MapPin />} label="Address" value={contact.address} />
                   <ContactRow icon={<Phone />} label="Phone" value={contact.phoneDisplay} href={contact.phoneHref} />
                   <ContactRow icon={<Mail />} label="Email" value={contact.email} href={`mailto:${contact.email}`} />
-                  <ContactRow icon={<Clock3 />} label="OPD timings" value={contact.timings} />
                 </address>
                 <Button asChild size="lg" className="mt-8 w-full sm:w-auto"><a href={contact.whatsappHref} target="_blank" rel="noreferrer"><MessageCircle className="h-4 w-4" />{contact.whatsappLabel}</a></Button>
                 <div className="mt-10 aspect-video overflow-hidden rounded-lg border border-border-strong bg-muted">

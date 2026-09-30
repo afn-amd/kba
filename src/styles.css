@@ -90,6 +90,8 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   color: var(--muted-foreground);
   transition: color 180ms ease-out, border-color 180ms ease-out;
   &:hover { color: var(--foreground); border-color: var(--primary); }
+  /* The section currently on screen (set by the header's scroll tracking). */
+  &[aria-current] { color: var(--primary); }
   &:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 0.25rem; }
 }
 
@@ -169,36 +171,12 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 
 .tilt-card { transition: transform 220ms ease-out, box-shadow 220ms ease-out, border-color 220ms ease-out; }
 
-.medical-scene { position: relative; width: 16rem; height: 16rem; perspective: 900px; transform-style: preserve-3d; }
-.medical-loop { position: absolute; inset: 2rem; border: 0.75rem solid var(--primary); border-radius: 50%; box-shadow: var(--shadow-raised); transform-style: preserve-3d; }
-.medical-loop-one { transform: rotateX(68deg) rotateZ(25deg); }
-.medical-loop-two { transform: rotateY(68deg) rotateZ(-25deg); border-color: var(--primary-strong); }
-.medical-orbit-dot { position: absolute; left: 50%; top: 0.8rem; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--primary); box-shadow: var(--shadow-soft); }
-/* Header-sized loop: lit top edge / shaded bottom edge on the rings and glossy spheres give it depth. */
-.medical-scene.medical-mark { display: block; width: 3rem; height: 3rem; perspective: 160px; }
-.medical-mark .medical-loop {
-  inset: 0.35rem; border-width: 0.25rem;
-  border-top-color: color-mix(in oklab, var(--primary) 60%, white);
-  border-bottom-color: var(--primary-strong);
-  box-shadow: 0 3px 6px color-mix(in oklab, var(--shadow-color) 30%, transparent);
-}
-.medical-mark .medical-loop-two { border-color: var(--primary-strong); border-top-color: var(--primary); border-bottom-color: color-mix(in oklab, var(--primary-strong) 70%, black); }
-.medical-mark .medical-orbit-dot,
-.medical-mark .medical-sphere { border-radius: 50%; background: radial-gradient(circle at 35% 30%, color-mix(in oklab, var(--primary) 35%, white), var(--primary) 55%, var(--primary-strong)); box-shadow: 0 2px 3px color-mix(in oklab, var(--shadow-color) 35%, transparent); }
-.medical-mark .medical-orbit-dot { top: 0; width: 0.5rem; height: 0.5rem; translate: -50% 0; }
-.medical-mark .medical-sphere { position: absolute; left: 50%; top: 50%; width: 0.65rem; height: 0.65rem; translate: -50% -50%; }
-
-/* Tilt and rotation only for pointer devices that allow motion; touch screens get the static pose. */
+/* Card tilt only for pointer devices that allow motion; touch screens get the static pose. */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .tilt-card { transform: perspective(900px) rotateX(0) rotateY(0); }
   .tilt-card:nth-child(odd):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(-2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
   .tilt-card:nth-child(even):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
-  .medical-loop-one { animation: loop-one 12s linear infinite; }
-  .medical-loop-two { animation: loop-two 15s linear infinite reverse; }
 }
-
-@keyframes loop-one { to { transform: rotateX(68deg) rotateZ(385deg); } }
-@keyframes loop-two { to { transform: rotateY(68deg) rotateZ(335deg); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

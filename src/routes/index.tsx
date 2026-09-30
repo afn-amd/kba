@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDown,
   ArrowRight,
+  ArrowUpRight,
   Clock3,
   Facebook,
   GraduationCap,
@@ -36,12 +37,12 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       {
         property: "og:image",
-        content: "https://placehold.co/1200x630/0057FF/FFFFFF/png?text=Dr.+Khalid+Bin+Amir",
+        content: "https://placehold.co/1200x630/3D6BB3/FFFFFF/png?text=Dr.+Khalid+Bin+Amir",
       },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:image",
-        content: "https://placehold.co/1200x630/0057FF/FFFFFF/png?text=Dr.+Khalid+Bin+Amir",
+        content: "https://placehold.co/1200x630/3D6BB3/FFFFFF/png?text=Dr.+Khalid+Bin+Amir",
       },
     ],
   }),
@@ -51,7 +52,7 @@ export const Route = createFileRoute("/")({
 const sectionTitle = "text-title font-extrabold text-foreground";
 
 function PortfolioPage() {
-  const { doctor, about, education, rotations, services, certifications, contact } = siteContent;
+  const { doctor, about, education, rotations, services, courses, writing, contact } = siteContent;
 
   return (
     <div className="action-bar-offset min-h-screen bg-background text-foreground">
@@ -169,21 +170,52 @@ function PortfolioPage() {
         <section className="section-y" aria-labelledby="certifications-title">
           <div className="page-container grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-12">
             <div><p className="section-kicker">05 · Certifications</p><h2 id="certifications-title" className={sectionTitle}>Continued learning.</h2></div>
-            <ul className="border-t border-border">
-              {certifications.map((certification) => (
-                <li key={certification.title} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-3 gap-y-1 border-b border-border py-5 sm:grid-cols-[2rem_1fr_auto] sm:items-center sm:py-6">
-                  <GraduationCap aria-hidden="true" className="mt-0.5 h-5 w-5 text-primary sm:mt-0" />
-                  <span className="font-extrabold text-foreground">{certification.title}</span>
-                  <span className="text-body col-start-2 text-muted-foreground sm:col-start-auto">{certification.status}</span>
-                </li>
+            <div>
+              <ul className="border-t border-border">
+                {courses.items.map((course) => (
+                  <li key={course.href} className="border-b border-border">
+                    <a href={course.href} target="_blank" rel="noopener noreferrer" className="group grid grid-cols-[2rem_minmax(0,1fr)] gap-x-3 gap-y-1 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:grid-cols-[2rem_1fr_auto] sm:items-center">
+                      <GraduationCap aria-hidden="true" className="mt-0.5 h-5 w-5 text-primary sm:mt-0" />
+                      <span>
+                        <span className="block font-extrabold text-foreground group-hover:text-primary">{course.title}</span>
+                        <span className="text-body block text-muted-foreground">{course.issuer} · {course.date}</span>
+                      </span>
+                      <span className="col-start-2 inline-flex items-center gap-1 text-sm font-bold text-primary sm:col-start-auto">
+                        {courses.verifyLabel}<ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="writing" className="scroll-offset section-y border-t border-border" aria-labelledby="writing-title">
+          <div className="page-container">
+            <div className="grid gap-5 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-6">
+              <div><p className="section-kicker">06 · Writing</p><h2 id="writing-title" className={sectionTitle}>{writing.title}</h2></div>
+              <p className="max-w-[58ch] text-base leading-relaxed text-muted-foreground lg:justify-self-end">{writing.intro}</p>
+            </div>
+            <div className="mt-10 grid gap-4 sm:auto-rows-fr sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+              {writing.platforms.map((platform) => (
+                <a key={platform.name} href={platform.href} target="_blank" rel="noopener noreferrer" className="tilt-card group flex flex-col rounded-lg border border-border bg-card p-6 shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-56">
+                  <span className="text-xs font-extrabold text-primary">{platform.handle}</span>
+                  <h3 className="mt-6 text-xl font-extrabold text-foreground sm:mt-10">{platform.name}</h3>
+                  <p className="text-body mt-3 text-muted-foreground">{platform.description}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold text-primary">
+                    Read on {platform.name}
+                    <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </span>
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
 
         <section id="contact" className="scroll-offset section-y border-t border-border bg-surface" aria-labelledby="contact-title">
           <div className="page-container">
-            <p className="section-kicker">06 · Contact</p>
+            <p className="section-kicker">07 · Contact</p>
             <h2 id="contact-title" className={sectionTitle}>Get in touch.</h2>
             <div className="mt-10 grid gap-10 md:mt-12 lg:grid-cols-2 lg:gap-16">
               <div className="min-w-0">

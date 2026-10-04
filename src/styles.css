@@ -178,6 +178,10 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   .tilt-card:nth-child(even):hover { transform: perspective(900px) translateY(-5px) rotateX(2deg) rotateY(2deg); box-shadow: var(--shadow-raised); border-color: var(--primary); }
 }
 
+/* Blinking caret for the hero headline typewriter. */
+.typing-caret { display: inline-block; width: 0.06em; height: 0.85em; margin-left: 0.06em; vertical-align: -0.05em; background: var(--primary); animation: caret-blink 1s steps(1) infinite; }
+@keyframes caret-blink { 50% { opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
